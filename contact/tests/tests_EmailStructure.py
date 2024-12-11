@@ -5,7 +5,7 @@ from django.core import mail
 class ContactPostValid(TestCase):
     def setUp(self):
         #Dados para a simulação do envio.
-        Source = dict(
+        Data = dict(
             name = "Vincent Moreira",
             phone = "53-91234-5678",
             email = "HeyViincy@gmail.com",
@@ -38,6 +38,6 @@ class ContactPostValid(TestCase):
             "HeyViincy@gmail.com",
             "Mensagem de contato"
             ]
-        for String in Data:
+        for String in Source:
             with self.subTest():
                 self.assertIn(String, self.email.body)
