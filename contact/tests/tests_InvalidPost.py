@@ -1,5 +1,6 @@
 from django.test import TestCase
 from contact.Forms import ContactForm
+from contact.models import Contact
 
 #Testes para um post inválido.
 class InvalidPost(TestCase):
@@ -23,3 +24,7 @@ class InvalidPost(TestCase):
     def test_FormErrors(self):
         Form = self.response.context['form']
         self.assertTrue(Form.errors)
+
+    #Conferindo se o contato não é registrado no banco de dados.
+    def test_CancelSave(self):
+        self.assertFalse(Contact.objects.exists())

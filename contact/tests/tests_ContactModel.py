@@ -30,6 +30,16 @@ class ModelContact(TestCase):
         self.assertEqual(False, self.obj.flag)
 
     #Confere se o campo response_sent_at pode ser nulo
-    def test_ResponseSentAt(self):
+    def test_ResponseSentAtNull(self):
         field = Contact._meta.get_field('response_sent_at')
         self.assertTrue(field.null)
+
+    #Confere se o campo response_sent_at pode ficar em branco
+    def test_ResponseSentAtBlank(self):
+        field = Contact._meta.get_field('response_sent_at')
+        self.assertTrue(field.blank)
+
+    #Confere se response pode ficar em branco
+    def test_ResponseBlank(self):
+        field = Contact._meta.get_field('response')
+        self.assertTrue(field.blank)

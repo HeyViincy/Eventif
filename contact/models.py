@@ -3,12 +3,12 @@ from django.db import models
 
 class Contact(models.Model):
     name = models.CharField('Nome', max_length=100)
-    phone = models.CharField('Telefone', max_length=20)
+    phone = models.CharField('Telefone', max_length=20, blank=True)
     email = models.EmailField('E-Mail')
-    message = models.TextField('Mensagemm', max_length=200)
+    message = models.TextField('Mensagem', max_length=200)
     created_at = models.DateTimeField('Criado em', auto_now_add=True)
-    response = models.TextField('Resposta', max_length=200, null=True)
-    response_sent_at = models.DateTimeField('Respondido em', null=True)
+    response = models.TextField('Resposta', max_length=200, blank=True)
+    response_sent_at = models.DateTimeField('Respondido em', null=True, blank=True)
     flag = models.BooleanField('Já foi respondido', default=False)
 
     class Meta:

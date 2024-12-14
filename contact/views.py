@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.template.loader import render_to_string
 from django.core import mail
 from django.conf import settings
+from contact.models import Contact as C
 
 def _SendEmail(Template, Data, From, To):
     EmailBody = render_to_string(Template, Data)
@@ -14,6 +15,9 @@ def FormPost(request):
     Form = ContactForm(request.POST)
     if not Form.is_valid():
         return render(request, 'contact/contact_form.html', {'form': Form})
+    
+    contact = C.objects.create(**Form.cleaned_data)
+
     _SendEmail(
         'contact/contact_email.txt',
         Form.cleaned_data,
